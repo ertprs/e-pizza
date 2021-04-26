@@ -5,18 +5,25 @@ import { StepContext } from "../../context/stepContext";
 import styles from "./pizzaSize.module.scss";
 import { convertPrice } from "../../utils/convertPrice";
 import { urls } from "../../utils/urls";
+import { DialogModal } from "../DialogModal";
 
 export const PizzaSize = ({ pizza }) => {
   const step = useContext(StepContext);
   const pizzaDetailsContext = useContext(PizzaDetailsContext);
   const pizzaContext = useContext(PizzaStoreContext);
   const pizzasStore = pizzaContext.pizzasStore.store;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [stateLocal, setStateLocal] = useState({
     currentStep: 1,
     sizes: [],
     borders: [],
     daily: [],
     isDaily: false,
+  });
+  const [pizzaOrder, setPizzaOrder] = useState({
+    total: 0,
+    border: {},
+    size: {},
   });
 
   useEffect(() => {
@@ -69,8 +76,18 @@ export const PizzaSize = ({ pizza }) => {
     }
   };
 
+  const finishValidation = () =>
+    pizzaDetailsContext.pizzaDetails.size.price &&
+    pizzaDetailsContext.pizzaDetails.border.price &&
+    step.currentStep === 2;
+
   const handleDecrement = () => step.decrement();
-  const handleIncrement = () => step.increment();
+  const handleIncrement = () => {
+    if (finishValidation()) {
+      handleOpenModal();
+    }
+    step.increment();
+  };
 
   const isDaily = () => {
     const founded = stateLocal.daily.filter((item) => item === pizza.id);
@@ -98,8 +115,34 @@ export const PizzaSize = ({ pizza }) => {
     }
   };
 
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <div>
+      <DialogModal
+        isOpen={modalIsOpen}
+        closeModal={handleCloseModal}
+        pizzaDetails={{
+          total: getTotal(),
+          border: {
+            name: pizzaDetailsContext.pizzaDetails.border.name,
+            price: pizzaDetailsContext.pizzaDetails.border.price,
+          },
+          size: {
+            name: pizzaDetailsContext.pizzaDetails.size.name,
+            price: pizzaDetailsContext.pizzaDetails.size.price,
+          },
+          pizza: {
+            pizza,
+          },
+        }}
+      />
       <div>
         <div className={styles.list}>
           <p className={styles.list__title}>
@@ -126,7 +169,7 @@ export const PizzaSize = ({ pizza }) => {
         <div className={styles.order__container}>
           {isDaily() && (
             <p className={styles.daily}>
-              <b>Seu desconto do dia foi aplivado (20%) </b>
+              <b>Seu desconto do dia foi aplicado (20%) </b>
             </p>
           )}
           <p>
@@ -158,11 +201,7 @@ export const PizzaSize = ({ pizza }) => {
           Voltar
         </button>
         <button type="button" onClick={handleIncrement}>
-          {pizzaDetailsContext.pizzaDetails.size.price &&
-          pizzaDetailsContext.pizzaDetails.border.price &&
-          step.currentStep === 2
-            ? "Finalizar"
-            : "Próximo"}
+          {finishValidation() ? "Finalizar" : "Próximo"}
         </button>
       </div>
     </div>

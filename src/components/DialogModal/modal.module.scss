@@ -1,0 +1,19 @@
+.button_wrap {
+}
+
+.button {
+  margin-top: 24px;
+  border: none;
+  height: 42px;
+  width: 120px;
+  background: var(--yellow-100);
+  & + button {
+    margin-left: 8px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 24px;
+}

@@ -16,10 +16,8 @@ export const ProductList = ({ pizzas }) => {
   return (
     <Container>
       <span className={styles.title}>Cardápio de Pizzas</span>
-      <div>
-        <div>
-          <p className={styles.title}>Ofertas diárias com desconto</p>
-        </div>
+      <div className={styles.wrapper}>
+        <p className={styles.title}>Ofertas diárias com desconto</p>
         <div className={styles.content}>
           {daily.map((item) => (
             <div
