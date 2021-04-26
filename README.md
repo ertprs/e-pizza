@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## E - Pizza
 
+**É necessário ter o Node.JS LTS em seu computador para execultar o projeto**
+
 Rodando o Projeto
 
 ```bash
@@ -17,9 +19,12 @@ yarn dev
 ```
 Projeto criado com Next.js para criar um catálogo de pizza.
 
+### Preview: 
+[E-pizza](https://e-pizza.vercel.app)
+
 
 ### Link do Mock do backend: 
-[json-server] https://my-json-server.typicode.com/luancma/json-server
+[json-server](https://my-json-server.typicode.com/luancma/json-server)
 
 ### Issues
 - [ ] Finalizar a venda
