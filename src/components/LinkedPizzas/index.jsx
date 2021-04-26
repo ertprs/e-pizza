@@ -1,10 +1,7 @@
-import { useEffect, useState, useContext } from "react";
-import { PizzaStoreContext } from "../../context/PizzaContext";
-import { Container } from "../Container";
+import { useEffect, useState } from "react";
 import { PizzaCard } from "../PizzaCard";
 import styles from "./linked.module.scss";
 export const LinkedPizzas = ({ pizza }) => {
-  const teste = useContext(PizzaStoreContext);
   const [flavors, setFlavours] = useState([]);
   useEffect(() => {
     fetch(`http://my-json-server.typicode.com/luancma/json-server/flavors`)

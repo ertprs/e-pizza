@@ -11,3 +11,12 @@
     margin-left: 24px;
   }
 }
+
+@media (max-width: 600px) {
+  .card {
+    & + div {
+      margin: auto;
+      margin-top: 24px;
+    }
+  }
+}
