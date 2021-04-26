@@ -28,12 +28,12 @@ const usePizzaDetails = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const currentItem = JSON.parse(localStorage.getItem("pizzaDetails"));
-      if (currentItem.size > 0)
+      if (currentItem?.size > 0)
         setStep({
           ...pizzaDetails,
           size: pizzaDetails.size,
         });
-      if (currentItem.border > 0)
+      if (currentItem?.border > 0)
         setStep({
           ...pizzaDetails,
           border: pizzaDetails.border,

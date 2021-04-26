@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { PizzaStoreContext } from "../../context/PizzaContext";
 import { Container } from "../Container";
 import { PizzaCard } from "../PizzaCard";
-
+import styles from "./linked.module.scss";
 export const LinkedPizzas = ({ pizza }) => {
   const teste = useContext(PizzaStoreContext);
   const [flavors, setFlavours] = useState([]);
@@ -12,19 +12,17 @@ export const LinkedPizzas = ({ pizza }) => {
       .then((json) => setFlavours(json));
   }, [pizza]);
 
-  // <p>{flavors[flavorId].name}</p>
-
   return (
-    <Container>
-      <span>
+    <div className={styles.container}>
+      <p className={styles.container_title}>
         <b>Pizzas sugeridas: </b>
-      </span>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      </p>
+      <div className={styles.linked_list_wrapper}>
         {flavors.length &&
           pizza.linked.map((flavorId) => (
             <PizzaCard pizza={flavors[flavorId]} />
           ))}
       </div>
-    </Container>
+    </div>
   );
 };
