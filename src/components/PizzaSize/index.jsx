@@ -122,6 +122,7 @@ export const PizzaSize = ({ pizza }) => {
             </label>
           ))}
         </div>
+
         <div className={styles.order__container}>
           {isDaily() && (
             <p className={styles.daily}>
@@ -157,7 +158,11 @@ export const PizzaSize = ({ pizza }) => {
           Voltar
         </button>
         <button type="button" onClick={handleIncrement}>
-          Próximo
+          {pizzaDetailsContext.pizzaDetails.size.price &&
+          pizzaDetailsContext.pizzaDetails.border.price &&
+          step.currentStep === 2
+            ? "Finalizar"
+            : "Próximo"}
         </button>
       </div>
     </div>
