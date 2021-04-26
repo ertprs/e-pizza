@@ -4,6 +4,7 @@ import { PizzaDetailsContext } from "../../context/PizzaDetailsContext";
 import { StepContext } from "../../context/stepContext";
 import styles from "./pizzaSize.module.scss";
 import { convertPrice } from "../../utils/convertPrice";
+import { urls } from "../../utils/urls";
 
 export const PizzaSize = ({ pizza }) => {
   const step = useContext(StepContext);
@@ -18,7 +19,7 @@ export const PizzaSize = ({ pizza }) => {
 
   useEffect(() => {
     if (!pizzasStore?.pizzasDetails) {
-      return fetch("http://my-json-server.typicode.com/luancma/json-server/db")
+      return fetch(urls.all)
         .then((response) => response.json())
         .then((json) =>
           setStateLocal({

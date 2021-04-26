@@ -3,7 +3,7 @@ import { Container } from "../../components/Container";
 import { LinkedPizzas } from "../../components/LinkedPizzas";
 import { PizzaSize } from "../../components/PizzaSize";
 import styles from "./details.module.scss";
-
+import { urls } from "../../utils/urls";
 const PizzaDetails = ({ pizza }) => {
   return (
     <Container>
@@ -26,9 +26,7 @@ const PizzaDetails = ({ pizza }) => {
 export default PizzaDetails;
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    "http://my-json-server.typicode.com/luancma/json-server/flavors"
-  );
+  const res = await fetch(urls.flavors);
   const flavors = await res.json();
   const paths = flavors.map((flavor) => ({
     params: { slug: flavor.slug },
@@ -38,9 +36,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `http://my-json-server.typicode.com/luancma/json-server/flavors`
-  );
+  const res = await fetch(urls.flavors);
   const pizzaJSON = await res.json();
   const pizza = pizzaJSON.filter((pizza) => pizza.slug === params.slug)[0];
   return { props: { pizza } };

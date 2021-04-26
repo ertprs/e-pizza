@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { PizzaCard } from "../PizzaCard";
 import styles from "./linked.module.scss";
+import { urls } from "../../utils/urls";
 export const LinkedPizzas = ({ pizza }) => {
   const [flavors, setFlavours] = useState([]);
   useEffect(() => {
-    fetch(`http://my-json-server.typicode.com/luancma/json-server/flavors`)
+    fetch(urls.flavors)
       .then((response) => response.json())
       .then((json) => setFlavours(json));
   }, [pizza]);

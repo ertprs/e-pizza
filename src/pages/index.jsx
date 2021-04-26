@@ -3,6 +3,7 @@ import { Container } from "../components/Container";
 import { ProductList } from "../components/ProductList";
 import { PizzaStoreContext } from "../context/PizzaContext";
 import { StepContext } from "../context/stepContext";
+import { urls } from "../utils/urls";
 
 export default function Home({ data }) {
   const teste = useContext(PizzaStoreContext);
@@ -26,9 +27,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(
-    "http://my-json-server.typicode.com/luancma/json-server/db"
-  );
+  const res = await fetch(urls.all);
   const data = await res.json();
 
   if (!data) {
