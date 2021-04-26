@@ -1,0 +1,13 @@
+.card {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  flex-direction: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+
+  & + div {
+    margin-left: 24px;
+  }
+}
