@@ -6,7 +6,7 @@ export function PizzaCard({ pizza }) {
   return (
     <Link href={pizza.slug}>
       <div className={styles.card}>
-        <p>{pizza.name}</p>
+        <p styles={styles.text}>{pizza.name}</p>
         <Image src={pizza.image} width={200} height={200} />
       </div>
     </Link>

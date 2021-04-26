@@ -15,6 +15,8 @@ export const PizzaSize = ({ pizza }) => {
     currentStep: 1,
     sizes: [],
     borders: [],
+    daily: [],
+    isDaily: false,
   });
 
   useEffect(() => {
@@ -26,6 +28,7 @@ export const PizzaSize = ({ pizza }) => {
             ...stateLocal,
             sizes: json.sizes,
             borders: json.borders,
+            daily: json.daily,
           })
         );
     } else {
@@ -33,6 +36,7 @@ export const PizzaSize = ({ pizza }) => {
         ...stateLocal,
         sizes: pizzasStore.pizzasDetails.sizes,
         borders: pizzasStore.pizzasDetails.borders,
+        daily: pizzasStore.pizzasDetails.daily,
       });
     }
   }, [pizzasStore]);
@@ -68,11 +72,26 @@ export const PizzaSize = ({ pizza }) => {
   const handleDecrement = () => step.decrement();
   const handleIncrement = () => step.increment();
 
+  const isDaily = () => {
+    const founded = stateLocal.daily.filter((item) => item === pizza.id);
+    if (founded.length) {
+      return true;
+    }
+  };
+
+  const checkIsDaily = () => {
+    if (isDaily()) {
+      const dailyPromotion = pizza.price - pizza.price * 0.2;
+      return dailyPromotion;
+    }
+    return pizza.price;
+  };
+
   const getTotal = () => {
     const total =
       pizzaDetailsContext.pizzaDetails.size.price +
       pizzaDetailsContext.pizzaDetails.border.price +
-      pizza.price;
+      checkIsDaily();
 
     if (!isNaN(total)) {
       return convertPrice(total);
@@ -104,11 +123,16 @@ export const PizzaSize = ({ pizza }) => {
           ))}
         </div>
         <div className={styles.order__container}>
+          {isDaily() && (
+            <p className={styles.daily}>
+              <b>Seu desconto do dia foi aplivado (20%) </b>
+            </p>
+          )}
           <p>
             <b>Resumo do seu Pedido</b>
           </p>
           <p>
-            Sabor: {pizza.name} - {convertPrice(pizza.price)}
+            Sabor: {pizza.name} - {convertPrice(checkIsDaily(pizza.price))}
           </p>
 
           {!!pizzaDetailsContext.pizzaDetails?.size && (

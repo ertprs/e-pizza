@@ -4,7 +4,14 @@ import { LinkedPizzas } from "../../components/LinkedPizzas";
 import { PizzaSize } from "../../components/PizzaSize";
 import styles from "./details.module.scss";
 import { urls } from "../../utils/urls";
+import { useRouter } from "next/router";
 const PizzaDetails = ({ pizza }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Carregando ... </h1>;
+  }
+
   return (
     <Container>
       <div className={styles.container__wrapper}>
@@ -32,7 +39,7 @@ export async function getStaticPaths() {
     params: { slug: flavor.slug },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
