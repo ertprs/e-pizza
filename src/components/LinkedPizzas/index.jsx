@@ -17,7 +17,7 @@ export const LinkedPizzas = ({ pizza }) => {
       <div className={styles.linked_list_wrapper}>
         {flavors.length &&
           pizza.linked.map((flavorId) => (
-            <PizzaCard pizza={flavors[flavorId]} />
+            <PizzaCard key={flavorId} pizza={flavors[flavorId]} />
           ))}
       </div>
     </div>

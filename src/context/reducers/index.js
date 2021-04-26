@@ -18,13 +18,6 @@ const useStep = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const currentItem = JSON.parse(localStorage.getItem("step"));
-      if (currentItem > currentStep) setStep(currentItem);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
       return localStorage.setItem("step", JSON.stringify(currentStep));
     }
   }, [currentStep]);

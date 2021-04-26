@@ -15,15 +15,7 @@ const PizzaDetails = ({ pizza }) => {
         <b>Ingredientes:</b> <p>{pizza.ingredients}</p>
       </p>
 
-      {/* {stepsSlice > 2 ? (
-        <>
-          <PersonalizeIngredients />
-        </>
-      ) : (
-        <PizzaSize />
-      )} */}
-
-      <PizzaSize />
+      <PizzaSize pizza={pizza} />
 
       <LinkedPizzas pizza={pizza} />
     </Container>

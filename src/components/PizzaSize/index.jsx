@@ -1,9 +1,11 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PizzaStoreContext } from "../../context/PizzaContext";
 import { PizzaDetailsContext } from "../../context/PizzaDetailsContext";
-import { StepContext, StepProvider } from "../../context/stepContext";
+import { StepContext } from "../../context/stepContext";
+import styles from "./pizzaSize.module.scss";
+import { convertPrice } from "../../utils/convertPrice";
 
-export const PizzaSize = () => {
+export const PizzaSize = ({ pizza }) => {
   const step = useContext(StepContext);
   const pizzaDetailsContext = useContext(PizzaDetailsContext);
   const pizzaContext = useContext(PizzaStoreContext);
@@ -62,34 +64,70 @@ export const PizzaSize = () => {
     }
   };
 
-  getCheckedValue();
+  console.log(pizzaDetailsContext.pizzaDetails, pizzaDetailsContext);
 
   const handleDecrement = () => step.decrement();
   const handleIncrement = () => step.increment();
 
+  const getTotal = () => {
+    const total =
+      pizzaDetailsContext.pizzaDetails.size.price +
+      pizzaDetailsContext.pizzaDetails.border.price +
+      pizza.price;
+
+    if (!isNaN(total)) {
+      return convertPrice(total);
+    }
+  };
+
   return (
     <div>
-      <p>
-        Por favor, selecione {setCurrentStep[step.currentStep || 1]} da sua
-        Pizza:
-      </p>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        {currentStepMap[step.currentStep || 1].map((pizzaInfoDetails) => (
-          <label key={pizzaInfoDetails.id}>
-            {pizzaInfoDetails.name}
-            <input
-              type="radio"
-              name="radio"
-              value={pizzaInfoDetails.id}
-              checked={getCheckedValue(pizzaInfoDetails.id)}
-              onChange={() => handleChangePizzaDetails(pizzaInfoDetails)}
-            />
-            <span className="checkmark"></span>
-          </label>
-        ))}
-      </div>
-
       <div>
+        <div className={styles.list}>
+          <p className={styles.list__title}>
+            Por favor, selecione {setCurrentStep[step.currentStep || 1]} da sua
+            Pizza:
+          </p>
+          {currentStepMap[step.currentStep || 1].map((pizzaInfoDetails) => (
+            <label key={pizzaInfoDetails.id}>
+              {pizzaInfoDetails.name}
+              <input
+                type="radio"
+                name="radio"
+                value={pizzaInfoDetails.id}
+                checked={getCheckedValue(pizzaInfoDetails.id)}
+                onChange={() => handleChangePizzaDetails(pizzaInfoDetails)}
+              />
+              <span className="checkmark"></span>
+            </label>
+          ))}
+        </div>
+        <div>
+          <p>
+            <b>Resumo do seu Pedido</b>
+          </p>
+          <p>
+            Sabor: {pizza.name} - {convertPrice(pizza.price)}
+          </p>
+
+          {!!pizzaDetailsContext.pizzaDetails?.size && (
+            <p>
+              Tamanho: {pizzaDetailsContext.pizzaDetails.size.name} -{" "}
+              {convertPrice(pizzaDetailsContext.pizzaDetails.size.price)}{" "}
+            </p>
+          )}
+
+          {!!pizzaDetailsContext.pizzaDetails.border && (
+            <p>
+              Borda {pizzaDetailsContext.pizzaDetails.border.name} -{" "}
+              {convertPrice(pizzaDetailsContext.pizzaDetails.border.price)}{" "}
+            </p>
+          )}
+
+          {getTotal() && <p>Total :{getTotal()}</p>}
+        </div>
+      </div>
+      <div className={styles.button__wrapper}>
         <button type="button" onClick={handleDecrement}>
           Voltar
         </button>

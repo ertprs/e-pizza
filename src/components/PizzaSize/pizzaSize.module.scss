@@ -1,0 +1,27 @@
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+
+  button {
+    background-color: var(--yellow-100);
+    padding: 16px 16px;
+    width: 124px;
+    border: none;
+    border-radius: 8px;
+    color: var(--black);
+    & + button {
+      margin-left: 16px;
+    }
+  }
+}
+
+.list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list__title {
+  font-weight: 600;
+}
