@@ -17,7 +17,7 @@ export const ProductList = ({ pizzas }) => {
       <span className={styles.title}>Cardápio de Pizzas</span>
       <div className={styles.content}>
         {flavors?.map((flavor) => (
-          <div className={styles.product__item}>
+          <div key={flavor.id} className={styles.product__item}>
             <Image
               unoptimized={false}
               src={flavor.image}

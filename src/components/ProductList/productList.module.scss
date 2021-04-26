@@ -3,6 +3,17 @@
   grid-template-columns: repeat(4, 1fr);
   column-gap: 1.5rem;
   row-gap: 1.5rem;
+
+  @media (max-width: 1160px) {
+    grid-template-columns: repeat(3, 262px);
+  }
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(2, 262px);
+  }
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -16,4 +27,8 @@
   height: auto;
   text-align: center;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    width: 262px;
+  }
 }
