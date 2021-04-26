@@ -19,7 +19,7 @@ Projeto criado com Next.js para criar um catálogo de pizza.
 
 
 ### Link do Mock do backend: 
-https://my-json-server.typicode.com/luancma/json-server
+[json-server] https://my-json-server.typicode.com/luancma/json-server
 
 ### Issues
 - [ ] Finalizar a venda
