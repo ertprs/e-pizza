@@ -18,10 +18,10 @@ yarn dev
 Projeto criado com Next.js para criar um catálogo de pizza.
 
 
-#### Link do Mock do backend: 
+### Link do Mock do backend: 
 https://my-json-server.typicode.com/luancma/json-server
 
-#### Issues
+### Issues
 - [ ] Finalizar a venda
 - [ ] Dar a opção do usuário selecionar itens adicionais ( Azeitona, tomate, cebola, etc )
 - [ ] Criar um header com categorias ( Promoções, Mais vendidos, Contato )
