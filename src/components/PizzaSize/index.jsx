@@ -64,8 +64,6 @@ export const PizzaSize = ({ pizza }) => {
     }
   };
 
-  console.log(pizzaDetailsContext.pizzaDetails, pizzaDetailsContext);
-
   const handleDecrement = () => step.decrement();
   const handleIncrement = () => step.increment();
 
@@ -91,6 +89,8 @@ export const PizzaSize = ({ pizza }) => {
           {currentStepMap[step.currentStep || 1].map((pizzaInfoDetails) => (
             <label key={pizzaInfoDetails.id}>
               {pizzaInfoDetails.name}
+              {step.currentStep === 1 &&
+                ` - (${pizzaInfoDetails.splices} fatias)`}
               <input
                 type="radio"
                 name="radio"
@@ -113,7 +113,7 @@ export const PizzaSize = ({ pizza }) => {
           {!!pizzaDetailsContext.pizzaDetails?.size && (
             <p>
               Tamanho: {pizzaDetailsContext.pizzaDetails.size.name} -{" "}
-              {convertPrice(pizzaDetailsContext.pizzaDetails.size.price)}{" "}
+              {convertPrice(pizzaDetailsContext.pizzaDetails.size.price)}
             </p>
           )}
 

@@ -10,13 +10,16 @@
   & + div {
     margin-left: 24px;
   }
-}
 
-@media (max-width: 600px) {
-  .card {
+  @media (max-width: 975px) {
     & + div {
       margin: auto;
-      margin-top: 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    & + div {
+      margin: auto;
     }
   }
 }

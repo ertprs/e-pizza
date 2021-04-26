@@ -7,21 +7,13 @@ export function Header() {
   return (
     <div className={styled.container}>
       <Container>
-        <div style={{ display: "flex" }}>
-          <div className={styled.aside}>
-            <Link href="/">
-              <p>E-Pizza</p>
-            </Link>
-          </div>
-          <div>
-            <ul className={styled.navegatinon_container}>
-              {/* <li>
-                <Link href="/">
-                  <a>Catálogo</a>
-                </Link>
-              </li> */}
-            </ul>
-          </div>
+        <div className={styled.title}>
+          <Link href="/">
+            <p>E-Pizza</p>
+          </Link>
+        </div>
+        <div>
+          <ul className={styled.navegatinon_container}></ul>
         </div>
       </Container>
     </div>

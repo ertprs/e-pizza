@@ -1,22 +1,22 @@
-import Image from 'next/image';
-import { Container } from '../Container';
-import styles from '../PizzasGrid/pizzasGrid.module.scss';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import { Container } from "../Container";
+import styles from "./productList.module.scss";
+import { useRouter } from "next/router";
 
 export const ProductList = ({ pizzas }) => {
   const flavors = pizzas.flavors;
 
   const router = useRouter();
 
-  const handleSelectPizza = pizza => {
+  const handleSelectPizza = (pizza) => {
     return router.push(`/detalhes/${pizza.slug}`);
   };
 
   return (
     <Container>
-      <h1>Listagem de pizzas</h1>
+      <span className={styles.title}>Cardápio de Pizzas</span>
       <div className={styles.content}>
-        {flavors?.map(flavor => (
+        {flavors?.map((flavor) => (
           <div className={styles.product__item}>
             <Image
               unoptimized={false}
@@ -29,14 +29,14 @@ export const ProductList = ({ pizzas }) => {
               onClick={() => handleSelectPizza(flavor)}
               style={{
                 fontWeight: 600,
-                fontSize: '1.5rem',
-                cursor: 'pointer',
+                fontSize: "1.5rem",
+                cursor: "pointer",
               }}
             >
               {flavor.name}
             </p>
             <span>Ingredientes: </span>
-            <p style={{ display: 'inline-block' }}>{flavor.ingredients},</p>
+            <p style={{ display: "inline-block" }}>{flavor.ingredients},</p>
           </div>
         ))}
       </div>

@@ -28,7 +28,7 @@
       position: relative;
 
       &.active::after {
-        content: '';
+        content: "";
         height: 3px;
         width: 100%;
         border-radius: 3px;
@@ -50,4 +50,23 @@
   //     align-items: center;
   //   }
   // }
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    left: 0;
+    position: relative;
+    justify-content: center;
+  }
 }

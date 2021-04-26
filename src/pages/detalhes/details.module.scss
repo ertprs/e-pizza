@@ -1,6 +1,29 @@
+.container__wrapper {
+  margin-top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: 975px) {
+    flex-direction: column;
+  }
+}
+
+.pizza__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .ingredients {
   text-align: center;
   border: 1px solid;
   padding: 16px 32px;
   border-radius: 16px;
+  width: 540px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 }

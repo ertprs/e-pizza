@@ -1,18 +1,36 @@
 .container {
   margin-top: 32px;
+  width: 100%;
+
+  @media (max-width: 975px) {
+    width: auto;
+  }
 }
 
 .container_title {
   margin: 16px 0px;
+  @media (max-width: 975px) {
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    text-align: center;
+  }
 }
 
 .linked_list_wrapper {
   display: flex;
   justify-items: center;
-}
 
-@media (max-width: 600px) {
-  .linked_list_wrapper {
+  @media (max-width: 975px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    row-gap: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    justify-items: center;
     flex-direction: column;
   }
 }
