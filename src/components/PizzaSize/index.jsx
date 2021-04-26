@@ -103,7 +103,7 @@ export const PizzaSize = ({ pizza }) => {
             </label>
           ))}
         </div>
-        <div>
+        <div className={styles.order__container}>
           <p>
             <b>Resumo do seu Pedido</b>
           </p>
